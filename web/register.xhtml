@@ -28,6 +28,8 @@ and open the template in the editor.
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title> Registro </title>
     </h:head>
@@ -87,12 +89,12 @@ and open the template in the editor.
                             <p:spacer></p:spacer>
 
                             <p:password id="pass2" value="#{passwordView.pass2},#{registrar.pass2}" style="width: 100%"  placeholder="Confirmar Contraseña"   feedback="false">
-                               
+
                             </p:password>
                             <p:messages  for="pass1"  id="msgLastname" />
-                         
+
                             <p:spacer></p:spacer>
-                            
+
                             <p:commandButton id="btnSub"  validateClient="true" update="msgLastname" action="#{registrar.username}"  value="Registrarse" />    
                         </div>
 
@@ -102,88 +104,48 @@ and open the template in the editor.
         </div>
 
         <h:outputStylesheet name="css/layout.css" library="omega-layout" />
-
-        <script type="text/javascript">
-            //<![CDATA[
-            /**
-             * Faces Validator
-             */
-
-
-            PrimeFaces.validator['custom.emailValidator'] = {
-
-                pattern: /\S+@\S+/,
-
-                validate: function (element, value) {
-                    //use element.data() to access validation metadata, in this case there is none.
-                    if (!this.pattern.test(value)) {
-                        throw {
-                            summary: 'Validation Error',
-                            detail: value + '  no es un correo valido.'
-                        }
-                    }
-                }
-            };
-
-
-            PrimeFaces.validator['custom.passwordValidator'] = {
-
-                value1: document.getElementById('frmaReg:pass1').value,
-                value2: document.getElementById('frmaReg:pass2').value,
-
-                validate: function (element, value) {
-                    //use element.data() to access validation metadata, in this case there is none.
-                    if (this.value1 !== this.value2) {
-                        throw {
-                            summary: 'Validation Error',
-                            detail: ' las contrasenias no coinciden.'
-                        }
-                    }
-                }
-            };
-
-
-
-            PrimeFaces.validator['Password'] = {
-
-                value1: document.getElementById('frmaReg:pass1').value,
-                value2: document.getElementById('frmaReg:pass2').value,
-
-                MESSAGE_ID: 'XXXXXXX',
-
-                validate: function (element, value) {
-                    var vc = PrimeFaces.util.ValidationContext;
-
-                    if (this.value1 !== this.value2) {
-                        var msgStr = element.data('p-email-msg'),
-                                msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
-
-                        throw msg;
-                    }
-                }
-            };
-
-            PrimeFaces.validator['Email'] = {
-
-                pattern: /\S+@\S+/,
-
-                MESSAGE_ID: 'org.primefaces.examples.validate.email.message',
-
-                validate: function (element, value) {
-                    var vc = PrimeFaces.util.ValidationContext;
-
-                    if (!this.pattern.test(value)) {
-                        var msgStr = element.data('p-email-msg'),
-                                msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
-
-                        throw msg;
-                    }
-                }
-            };
-            //]]>
-        </script>
-
     </h:body>
+    <script type="text/javascript">
+        //<![CDATA[
+        /**
+         * Faces Validator
+         */
+        PrimeFaces.validator['custom.emailValidator'] = {
 
+            pattern: /\S+@\S+/,
+
+            validate: function (element, value) {
+                //use element.data() to access validation metadata, in this case there is none.
+                if (!this.pattern.test(value)) {
+                    throw {
+                        summary: 'Validation Error',
+                        detail: value + ' is not a valid email.'
+                    }
+                }
+            }
+        };
+
+        /**
+         * Bean validator
+         */
+        PrimeFaces.validator['Email'] = {
+
+            pattern: /\S+@\S+/,
+
+            MESSAGE_ID: 'org.primefaces.examples.validate.email.message',
+
+            validate: function (element, value) {
+                var vc = PrimeFaces.util.ValidationContext;
+
+                if (!this.pattern.test(value)) {
+                    var msgStr = element.data('p-email-msg'),
+                            msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+
+                    throw msg;
+                }
+            }
+        };
+        //]]>
+    </script>
 
 </html>

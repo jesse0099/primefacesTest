@@ -24,27 +24,35 @@
                 <span class="title">Omega</span>
 
                 <div class="ui-g ui-fluid">
-                    <div class="ui-g-12">
-                        <p:inputText placeholder="Username" />
-                    </div>
-                    <div class="ui-g-12">
-                        <p:password placeholder="Password" feedback="false"/>
-                    </div>
-                    <div class="ui-g-12 ui-md-6">
-                        <span class="remember-me">Remember Me</span>
-                        <p:selectBooleanCheckbox />
-                    </div>
-                    <div class="ui-g-12 ui-md-6">
-                        <p:link>Forgot Password</p:link>
-                    </div>
-                    <div class="ui-g-12">
-                        <p:button value="Login" icon="fa fa-check" />
-                    </div>
-                    <div class="ui-g-12">
-                        <button class="loginBtn loginBtn--google">
-                            Login with Google
-                        </button>
-                    </div>
+                    <h:form  id="frmaLogin">
+                        <div class="ui-g-12">
+                            <p:inputText id="txtEmail" required="true" requiredMessage="Usuario obligatorio" placeholder="Username" >
+                                <f:validateRequired></f:validateRequired>
+                            </p:inputText>
+                            <p:message for="txtEmail"></p:message>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:password id="txtPassword" requiredMessage="Contraseña obligatoria"  placeholder="Password" required="true" feedback="false">
+                                <f:validateRequired></f:validateRequired>
+                            </p:password>
+                            <p:message for="txtPassword"></p:message>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <span class="remember-me">Remember Me</span>
+                            <p:selectBooleanCheckbox />
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:link style="color: #03A8E4" href="faces/resetPass.xhtml">Forgot Password</p:link>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:button value="Login" icon="fa fa-check"></p:button>
+                        </div>
+                        <div class="ui-g-12">
+                            <button style="width: 100%;display: inline-block" class="loginBtn loginBtn--google">
+                                Login with Google
+                            </button>
+                        </div>
+                    </h:form>
                 </div>
             </div>
 
@@ -52,6 +60,46 @@
         </div>
         <h:outputStylesheet name="css/myLogin.css" library="omega-layout"></h:outputStylesheet>
         <h:outputStylesheet name="css/layout.css" library="omega-layout" />
+        <script type="text/javascript">
+            //<![CDATA[
+            /**
+             * Faces Validator
+             */
+
+
+            PrimeFaces.validator['custom.emailValidator'] = {
+
+                pattern: /\S+@\S+/,
+
+                validate: function (element, value) {
+                    //use element.data() to access validation metadata, in this case there is none.
+                    if (!this.pattern.test(value)) {
+                        throw {
+                            summary: 'Validation Error',
+                            detail: value + '  No es un correo válido.'
+                        }
+                    }
+                }
+            };
+            PrimeFaces.validator['Email'] = {
+
+                pattern: /\S+@\S+/,
+
+                MESSAGE_ID: 'org.primefaces.examples.validate.email.message',
+
+                validate: function (element, value) {
+                    var vc = PrimeFaces.util.ValidationContext;
+
+                    if (!this.pattern.test(value)) {
+                        var msgStr = element.data('p-email-msg'),
+                                msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+
+                        throw msg;
+                    }
+                }
+            };
+            //]]>
+        </script>
     </h:body>
 
 </html>

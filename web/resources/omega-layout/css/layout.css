@@ -2016,13 +2016,13 @@ html {
   background-attachment: fixed; }
 
 #login-wrapper {
-  width: 400px;
+  width: 450px;
   margin: 0 auto;
   text-align: center; }
   #login-wrapper #login-container {
     margin-top: 20px;
     box-sizing: border-box;
-    height: 70%;
+    height: 80%;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     padding: 2em;
