@@ -7,6 +7,12 @@
 
     <h:head>
         <f:facet name="first">
+            <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+            <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+            <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+            <!-- Add Firebase products that you want to use -->
+            <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
@@ -48,7 +54,7 @@
                             <p:button value="Login" icon="fa fa-check"></p:button>
                         </div>
                         <div class="ui-g-12">
-                            <button style="width: 100%;display: inline-block" class="loginBtn loginBtn--google">
+                            <button id="btnLogGoogle" type="button"  onclick="googleLogIn()" style="width: 100%;display: inline-block" class="loginBtn loginBtn--google">
                                 Login with Google
                             </button>
                         </div>
@@ -100,6 +106,8 @@
             };
             //]]>
         </script>
+        <h:outputScript name="omega-layout/js/fireInit.js"></h:outputScript>
+        <h:outputScript name="omega-layout/js/myFireBase.js"></h:outputScript>
     </h:body>
 
 </html>
