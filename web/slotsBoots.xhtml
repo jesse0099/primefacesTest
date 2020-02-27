@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+
+    <h:body style="min-height: 100%">
+
+        <ui:composition template="./WEB-INF/template.xhtml">
+            <ui:define name="head">
+                <!-- Latest compiled and minified CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"></link>
+                <!-- Optional theme -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous"></link>
+                <!-- Latest compiled and minified JavaScript -->
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+                <title>PrimeFaces Omega</title>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="container" style="width: 100%;height: 100%;">
+                    <div class="row">
+                        <div class="col-sm-12" style="height: 100%;min-height: 100%">
+                            <h:form style="height: 100%;min-height: 100%">
+                                <p:orderList 
+                                    rendered="#{not empty detailEventController.lst}" id="orderList" style="width: 100%;height: 100%;min-height: 100%;display: block" value="#{detailEventController.lst}" var="eve"
+                                    itemLabel="#{eve}" controlsLocation="none"  itemValue="#{eve}"  >
+                                    <p:column style="margin-bottom:4px ; border:none;width: 100%;display: block;min-height:150px;">
+                                       
+                                    </p:column>
+
+                                </p:orderList>  
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+        <h:outputStylesheet name="css/myLogin.css" library="omega-layout"></h:outputStylesheet>
+    </h:body>
+</html>

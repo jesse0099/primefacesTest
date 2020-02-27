@@ -48,29 +48,33 @@ and open the template in the editor.
 
                     <p:graphicImage name="images/login-logo.png" library="omega-layout"/>
                     <span style="font-size: x-large;display: block" >Recuperación de contraseña</span>
-                    <h:form  id="frmaX" style="   margin-top: 20px;
-                             box-sizing: border-box;
-                             height: 40%;
-                             width: 100%;
-                             background-color: #ffffff;
-                             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-                             padding: 2em;
-                             text-align: center;
-                             color: #4f575b; ">
+                    <h:form onsubmit="return false" prependId="false" id="frmaX" style="   margin-top: 20px;
+                            box-sizing: border-box;
+                            height: 40%;
+                            width: 100%;
+                            background-color: #ffffff;
+                            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+                            padding: 2em;
+                            text-align: center;
+                            color: #4f575b; ">
                         <div style="text-align: justify;margin-bottom: 15px">
                             <span style="font-size: medium;">¿ Tienes una crisis de identidad ? Puedes recuperar tu contraseña de <b>AgilRepo</b> utilizando el correo electronico
                                 asociado con tu cuenta</span>
                         </div>
 
                         <p:outputLabel   style="block" value="Email :" for="txtEmail" ></p:outputLabel>
-                        <p:inputText   required="true" requiredMessage="Campo obligatorio" style="display: block;width: 100%" id="txtEmail"  >
+                        <p:inputText  dir="email"   required="true" requiredMessage="Campo obligatorio" style="display: block;width: 100%" id="txtEmail"  >
                             <f:validator validatorId="custom.emailValidator"></f:validator>
                             <p:clientValidator></p:clientValidator>
                         </p:inputText>
-                        <p:message for="txtEmail"></p:message>
+                        <p:message id="msgEmail"  for="txtEmail"></p:message>
                         <p:spacer></p:spacer>
-                        <p:button   onclick="resetPassword()" value="Enviar correo de recuperación" style="display: block;width: 100%" ></p:button>
-                       <!-- <button  onclick="resetPassword()" value="Enviar correo de recuperación" style="display: block;width: 100%" ></button>-->
+                        <button 
+                            id="submitButton" style="display: block;width: 100%;line-height: 2em"
+                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+                            value="Enviar correo de recuperacion"
+                            type="submit">Enviar correo de recuperacion
+                        </button>
                         <p:spacer></p:spacer>
                         <div style="text-align: left;margin: 0">
                             <p:link style="color: #03A8E4" href="faces/login.xhtml">Regresar al login</p:link>
@@ -79,10 +83,28 @@ and open the template in the editor.
                 </div>
             </div>    
         </div>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 style="color: red" class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>La información proporcionada es incorrecta.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <h:outputStylesheet name="css/layout.css" library="omega-layout" />
         <h:outputScript name="js/fireInit.js" library="omega-layout"></h:outputScript>
-        <h:outputScript name="js/myFireBase.js" library="omega-layout"></h:outputScript>
+        <h:outputScript name="js/fireResetPass.js" library="omega-layout"></h:outputScript>
         <script type="text/javascript">
             //<![CDATA[
             /**

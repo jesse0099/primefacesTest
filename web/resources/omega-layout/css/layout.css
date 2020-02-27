@@ -1600,10 +1600,12 @@ html {
     font-size: 14px;
     margin: 0;
     padding: 0;
+    height: 100%;
+    min-height: 100%;
     background-color: #edf0f5; }
 
 .wrapper {
-    padding: 0; }
+    padding: 0;height: 100%; min-height: 100%}
 .wrapper .topbar {
     -moz-transition: left 0.3s;
     -o-transition: left 0.3s;
@@ -1885,7 +1887,9 @@ html {
     -webkit-transition: margin-left 0.3s;
     transition: margin-left 0.3s;
     margin-left: 250px;
-    padding: 50px 16px 16px 16px; }
+    padding: 50px 16px 16px 16px; 
+    min-height: 100%;
+    height: 100%;}
 .wrapper .footer {
     margin-left: 250px;
     height: 40px;
@@ -2022,7 +2026,7 @@ html {
 #login-wrapper #login-container {
     margin-top: 20px;
     box-sizing: border-box;
-    height: 80%;
+    height: 100%;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     padding: 2em;
@@ -2323,7 +2327,7 @@ h2 {
     left: 0;
     width: 100%;
     z-index: 101; }
-.landing-wrapper .landing-header .landing-header-content {
+.landing-wrapper .landing-header .landing-header-body {
     width: 960px;
     margin: 0 auto;
     padding-top: 30px;
